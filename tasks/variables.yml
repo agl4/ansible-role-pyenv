@@ -1,0 +1,16 @@
+---
+- name: os-specific variables
+  include_vars: "{{ item }}"
+  with_first_found:
+    - files:
+        - >-
+          vars/{{ ansible_os_family }}-{{
+          ansible_distribution_major_version}}.yml
+        - >-
+          vars/{{ ansible_os_family }}.yml
+      skip: true
+
+- name: python_packages
+  set_fact:
+    python_packages: "{{ __python_packages | list }}"
+  when: python_packages is not defined

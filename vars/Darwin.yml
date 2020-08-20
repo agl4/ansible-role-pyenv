@@ -1,0 +1,7 @@
+---
+# vars file for ansible-role-python
+__python_packages:
+  - autoconf
+  - git
+  - readline
+  - sqlite

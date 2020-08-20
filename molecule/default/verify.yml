@@ -1,0 +1,17 @@
+---
+- name: Verify
+  hosts: all
+  vars:
+    python_version: 3.7.7
+    python_pyenv_dir: ~/.pyenv
+  tasks:
+    - name: get python version
+      command: >-
+        {{ python_pyenv_dir }}/versions/{{ python_version }}/bin/python
+        --version
+      changed_when: false
+
+    - name: pyenv
+      command: >-
+        {{ python_pyenv_dir }}/bin/pyenv version
+      changed_when: false

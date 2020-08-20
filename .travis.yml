@@ -1,0 +1,35 @@
+---
+language: python
+services: docker
+
+dist:
+  - bionic
+
+sudo: true
+
+env:
+  global:
+    - ROLE_NAME: python
+  matrix:
+    - MOLECULE_IMAGE: ubuntu:latest
+    - MOLECULE_IMAGE: ubuntu:20.04
+    - MOLECULE_IMAGE: ubuntu:20.10
+    - MOLECULE_IMAGE: fedora:rawhide
+    - MOLECULE_IMAGE: fedora:32
+    - MOLECULE_IMAGE: fedora:33
+    - MOLECULE_IMAGE: centos:7
+    - MOLECULE_IMAGE: centos:8
+
+before_install:
+  - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+  - echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee
+    /etc/apt/sources.list.d/yarn.list
+  - sudo apt-get update
+  - sudo apt-get -y install yarn
+
+install:
+  - pip install molecule docker ansible-lint yamllint
+  - npm install --global prettier
+
+script:
+  - molecule test

@@ -1,0 +1,12 @@
+---
+# vars file for ansible-role-python
+__python_packages:
+  - bzip2-devel
+  - findutils
+  - gcc
+  - git
+  - make
+  - openssl-devel
+  - readline-devel
+  - sqlite-devel
+  - zlib-devel

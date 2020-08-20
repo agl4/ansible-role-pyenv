@@ -1,0 +1,5 @@
+---
+# defaults file for ansible-role-python
+python_version: 3.7.7
+python_pyenv_url: https://github.com/pyenv/pyenv.git
+python_pyenv_dir: ~/.pyenv

@@ -1,0 +1,10 @@
+---
+- name: Converge
+  hosts: all
+  vars:
+    python_version: 3.7.7
+    python_pyenv_dir: ~/.pyenv
+  tasks:
+    - name: "Include ansible-role-python"
+      include_role:
+        name: "ansible-role-python"

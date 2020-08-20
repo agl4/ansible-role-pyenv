@@ -1,0 +1,46 @@
+---
+name: Molecule testing
+on: [push, pull_request]
+
+jobs:
+  molecule:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python_version: ["3.7"]
+        molecule_image:
+          - ubuntu:latest
+          - ubuntu:20.04
+          - ubuntu:20.10
+          - fedora:rawhide
+          - fedora:32
+          - fedora:33
+          - centos:7
+          - centos:8
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          path: "${{ github.repository }}"
+
+      - name: Set up Python ${{ matrix.python_version }}
+        uses: actions/setup-python@v1
+        with:
+          python-version: ${{ matrix.python_version }}
+
+      - name: Install dependencies
+        run: pip install ansible molecule yamllint docker ansible-lint
+
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+
+      - name: Install Prettier.js
+        run: npm install --global prettier
+
+      - name: Molecule test
+        run: molecule test
+        working-directory: "${{ github.repository }}"
+        env:
+          MOLECULE_IMAGE: ${{ matrix.molecule_image }}

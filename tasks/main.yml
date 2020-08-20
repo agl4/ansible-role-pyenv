@@ -1,0 +1,24 @@
+---
+- name: variables
+  include_tasks: variables.yml
+
+- name: install
+  package:
+    name: "{{ python_packages }}"
+
+- name: checkout pyenv
+  git:
+    repo: "{{ python_pyenv_url }}"
+    dest: "{{ python_pyenv_dir }}"
+    version: master
+
+- name: install python version
+  command: >-
+    {{ python_pyenv_dir }}/bin/pyenv install {{ python_version }}
+  args:
+    creates: "{{ python_pyenv_dir }}/versions/{{ python_version }}/bin/python"
+
+- name: set global version
+  command: >-
+    {{ python_pyenv_dir }}/bin/pyenv global {{ python_version }}
+  changed_when: false
