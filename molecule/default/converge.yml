@@ -2,7 +2,12 @@
 - name: Converge
   hosts: all
   vars:
-    python_version: 3.7.7
+    python_versions:
+      - version: 3.7.7
+      - version: 2.7.8
+        state: absent
+      - version: 3.8.3
+        global: yes
     python_pyenv_dir: ~/.pyenv
   tasks:
     - name: "Include ansible-role-python"
