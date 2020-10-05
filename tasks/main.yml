@@ -34,4 +34,4 @@
   command: >-
     {{ python_pyenv_dir }}/bin/pyenv global {{ item.version }}
   changed_when: false
-  with_items: "{{ python_versions | selectattr('global') | list }}"
+  with_items: "{{ python_versions |selectattr('global', 'defined')| selectattr('global') | list }}"
