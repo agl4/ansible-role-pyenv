@@ -2,7 +2,7 @@
 - name: variables
   include_tasks: variables.yml
 
-- name: install
+- name: install build requisites
   package:
     name: "{{ python_packages }}"
 
