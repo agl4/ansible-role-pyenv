@@ -18,7 +18,7 @@
   register: pyenv_uninstall
   failed_when:
     - pyenv_uninstall.rc != 0
-    - "'not installed' not in pyenv_uninstall.stdout"
+    - "'not installed' not in pyenv_uninstall.stderr"
   when: item.state is defined and item.state == 'absent'
   with_items: "{{ python_versions }}"
 
