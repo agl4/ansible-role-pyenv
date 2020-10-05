@@ -27,7 +27,7 @@
     {{ python_pyenv_dir }}/bin/pyenv install {{ item.version }}
   args:
     creates: "{{ python_pyenv_dir }}/versions/{{ item.version }}/bin/python"
-  when: item.state is defined and item.state != 'absent'
+  when: (item.state is defined and item.state == 'present') or item.state is not defined
   with_items: "{{ python_versions }}"
 
 - name: set global version
