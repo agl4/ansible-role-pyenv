@@ -14,11 +14,14 @@
 
 - name: uninstall python versions
   command: >-
-    {{ python_pyenv_dir}}/bin/pyenv uninstall {{ item.version }}
+    {{ python_pyenv_dir}}/bin/pyenv uninstall -f {{ item.version }}
   register: pyenv_uninstall
   failed_when:
     - pyenv_uninstall.rc != 0
     - "'not installed' not in pyenv_uninstall.stderr"
+  changed_when:
+    - pyenv_uninstall.rc == 0
+    - "'uninstalled' in pyenv_uninstall.stdout"
   when: item.state is defined and item.state == 'absent'
   with_items: "{{ python_versions }}"
 
