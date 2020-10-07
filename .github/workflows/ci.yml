@@ -8,19 +8,24 @@ on:
 jobs:
   molecule:
     runs-on: ubuntu-latest
+    continue-on-error: ${{ matrix.experimental }}
     strategy:
       fail-fast: false
       matrix:
-        python_version: ["3.7"]
+        python_version: ["3.8"]
+        experimental: [false]
         molecule_image:
-          - ubuntu:latest
-          - ubuntu:20.04
-          - ubuntu:20.10
-          - fedora:rawhide
-          - fedora:32
-          - fedora:33
-          - centos:7
-          - centos:8
+          - agoloncser/docker-ansible-fedora31:latest
+          - agoloncser/docker-ansible-fedora32:latest
+          - agoloncser/docker-ansible-ubuntu1804:latest
+          - agoloncser/docker-ansible-ubuntu2004:latest
+        include:
+          - python_version: "3.8"
+            molecule_image: agoloncser/docker-ansible-fedora33:latest
+            experimental: true
+          - python_version: "3.8"
+            molecule_image: agoloncser/docker-ansible-ubuntu2010:latest
+            experimental: true
 
     steps:
       - name: Checkout
