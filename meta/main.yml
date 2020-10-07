@@ -1,7 +1,10 @@
 ---
 galaxy_info:
   role_name: pyenv
-  description: Role for installing pyenv and Python versions
+  description: >-
+    Ansible role to set up [pyenv](https://github.com/pyenv/pyenv) and
+    install different Python versions. It does not set up your shell
+    for using pyenv though. See pyenv documentation for this.
   author: Attila GOLONCSER
   license: BSD License
   min_ansible_version: 2.8
