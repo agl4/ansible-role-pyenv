@@ -2,16 +2,23 @@
 - name: Verify
   hosts: all
   vars:
-    python_version: 3.7.7
+    python_versions:
+      - version: 3.7.7
+      - version: 2.7.8
+        state: absent
+      - version: 3.8.3
+        global: yes
     python_pyenv_dir: ~/.pyenv
   tasks:
-    - name: get python version
+    - name: get python versions
       command: >-
-        {{ python_pyenv_dir }}/versions/{{ python_version }}/bin/python
-        --version
+        {{ python_pyenv_dir }}/bin/pyenv versions
+      register: pyenv_versions
       changed_when: false
 
-    - name: pyenv
-      command: >-
-        {{ python_pyenv_dir }}/bin/pyenv version
-      changed_when: false
+    - name: check installed versions
+      assert:
+        that:
+          - "'* 3.8.3' in pyenv_versions.stdout"
+          - "'3.7.7' in pyenv_versions.stdout"
+          - "'2.7.8' not in pyenv_versions.stdout"

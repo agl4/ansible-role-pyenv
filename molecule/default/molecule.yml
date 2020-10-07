@@ -3,11 +3,11 @@ dependency:
   name: galaxy
 driver:
   name: docker
-# lint: |
-#   set -e
-#   yamllint .
-#   prettier .
-#   ansible-lint
+lint: |
+  set -e
+  yamllint .
+  prettier .
+  ansible-lint
 platforms:
   - name: instance
     image: "${MOLECULE_IMAGE:-centos:7}"

@@ -2,7 +2,7 @@
 - name: variables
   include_tasks: variables.yml
 
-- name: install
+- name: install build requisites
   package:
     name: "{{ python_packages }}"
 
@@ -12,13 +12,29 @@
     dest: "{{ python_pyenv_dir }}"
     version: master
 
-- name: install python version
+- name: uninstall python versions
   command: >-
-    {{ python_pyenv_dir }}/bin/pyenv install {{ python_version }}
+    {{ python_pyenv_dir }}/bin/pyenv uninstall -f {{ item.version }}
+  register: pyenv_uninstall
+  failed_when:
+    - pyenv_uninstall.rc != 0
+    - "'not installed' not in pyenv_uninstall.stderr"
+  changed_when:
+    - pyenv_uninstall.rc == 0
+    - "'uninstalled' in pyenv_uninstall.stdout"
+  when: item.state is defined and item.state == 'absent'
+  with_items: "{{ python_versions }}"
+
+- name: install python versions
+  command: >-
+    {{ python_pyenv_dir }}/bin/pyenv install {{ item.version }}
   args:
-    creates: "{{ python_pyenv_dir }}/versions/{{ python_version }}/bin/python"
+    creates: "{{ python_pyenv_dir }}/versions/{{ item.version }}/bin/python"
+  when: (item.state is defined and item.state == 'present') or item.state is not defined
+  with_items: "{{ python_versions }}"
 
 - name: set global version
   command: >-
-    {{ python_pyenv_dir }}/bin/pyenv global {{ python_version }}
+    {{ python_pyenv_dir }}/bin/pyenv global {{ item.version }}
   changed_when: false
+  with_items: "{{ python_versions |selectattr('global', 'defined')| selectattr('global') | list }}"
