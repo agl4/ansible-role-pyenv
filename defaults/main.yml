@@ -1,7 +1,7 @@
 ---
-python_versions:
+pyenv_python_versions:
   - version: 3.8.3
     state: present
     global: yes
 python_pyenv_url: https://github.com/pyenv/pyenv.git
-python_pyenv_dir: ~/.pyenv
+pyenv_dir: ~/.pyenv

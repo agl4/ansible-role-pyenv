@@ -9,12 +9,12 @@
 - name: checkout pyenv
   git:
     repo: "{{ python_pyenv_url }}"
-    dest: "{{ python_pyenv_dir }}"
+    dest: "{{ pyenv_dir }}"
     version: master
 
 - name: uninstall python versions
   command: >-
-    {{ python_pyenv_dir }}/bin/pyenv uninstall -f {{ item.version }}
+    {{ pyenv_dir }}/bin/pyenv uninstall -f {{ item.version }}
   register: pyenv_uninstall
   failed_when:
     - pyenv_uninstall.rc != 0
@@ -23,18 +23,18 @@
     - pyenv_uninstall.rc == 0
     - "'uninstalled' in pyenv_uninstall.stdout"
   when: item.state is defined and item.state == 'absent'
-  with_items: "{{ python_versions }}"
+  with_items: "{{ pyenv_python_versions }}"
 
 - name: install python versions
   command: >-
-    {{ python_pyenv_dir }}/bin/pyenv install {{ item.version }}
+    {{ pyenv_dir }}/bin/pyenv install {{ item.version }}
   args:
-    creates: "{{ python_pyenv_dir }}/versions/{{ item.version }}/bin/python"
+    creates: "{{ pyenv_dir }}/versions/{{ item.version }}/bin/python"
   when: (item.state is defined and item.state == 'present') or item.state is not defined
-  with_items: "{{ python_versions }}"
+  with_items: "{{ pyenv_python_versions }}"
 
 - name: set global version
   command: >-
-    {{ python_pyenv_dir }}/bin/pyenv global {{ item.version }}
+    {{ pyenv_dir }}/bin/pyenv global {{ item.version }}
   changed_when: false
-  with_items: "{{ python_versions |selectattr('global', 'defined')| selectattr('global') | list }}"
+  with_items: "{{ pyenv_python_versions |selectattr('global', 'defined')| selectattr('global') | list }}"

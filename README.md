@@ -2,7 +2,6 @@
 
 Ansible role to set up [pyenv](https://github.com/pyenv/pyenv) and install different Python versions. It does not set up your shell for using pyenv though. See pyenv documentation for this.
 
-
 ## Requirements
 
 None.
@@ -11,26 +10,26 @@ None.
 
 This is a sample variable structure used by this role:
 
-    python_versions:
+    pyenv_python_versions:
       - version: 3.7.7
       - version: 2.7.8
         state: absent
       - version: 3.8.3
         global: yes
 
-### `python_versions.item.version`
+### `pyenv_python_versions.item.version`
 
 The python version to install.
 
-### `python_versions.item.state`
+### `pyenv_python_versions.item.state`
 
 The state of installed Python version. Set `absent` to remove, `present` to install. Default: `present`. Optional
 
-### `python_versions.item.global`
+### `pyenv_python_versions.item.global`
 
 Set this python version as global. Only the last item set as `global: yes` will be set as global Python version.
 
-### `python_pyenv_dir`
+### `pyenv_dir`
 
 Where to set up pyenv. Default: `~/.pyenv`
 
@@ -42,16 +41,15 @@ None.
 
     - hosts: all
       vars:
-        python_versions:
+        pyenv_python_versions:
           - version: 3.7.7
           - version: 2.7.8
             state: absent
           - version: 3.8.3
             global: yes
-        python_pyenv_dir: ~/.pyenv
+        pyenv_dir: ~/.pyenv
       roles:
-        - agoloncser.ansible-role-pyenv
-
+        - agoloncser.pyenv
 
 ## License
 
