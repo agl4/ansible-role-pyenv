@@ -1,6 +1,6 @@
 # Pyenv setup with ansible
 
-Ansible role to set up (pyenv)[https://github.com/pyenv/pyenv] and install different Python versions.
+Ansible role to set up [pyenv](https://github.com/pyenv/pyenv) and install different Python versions.
 
 ## Requirements
 
