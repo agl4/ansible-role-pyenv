@@ -27,7 +27,7 @@ The state of installed Python version. Set `absent` to remove, `present` to inst
 
 ### `python_versions.item.global`
 
-Set this python version as global. Only the last item set as `global` will be set as global Python version.
+Set this python version as global. Only the last item set as `global: yes` will be set as global Python version.
 
 ### `python_pyenv_dir`
 
