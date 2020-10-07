@@ -1,0 +1,5 @@
+### prettierrc v0.0.2
+# from https://github.com/agoloncser/ansible-role-skeleton
+bracketSpacing: false
+tabWidth: 2
+useTabs: false
