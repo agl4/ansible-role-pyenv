@@ -29,11 +29,6 @@ The state of installed Python version. Set `absent` to remove, `present` to inst
 
 Set this python version as global. Only the last item set as `global` will be set as global Python version.
 
-### `git_repos.item.version`
-
-
-The git version of the repository to check out. Can be a branch, a tag, commit id. Default: `master`.
-
 ### `python_pyenv_dir`
 
 Where to set up pyenv. Default: `~/.pyenv`
