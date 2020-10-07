@@ -20,10 +20,10 @@ jobs:
           - agoloncser/docker-ansible-ubuntu1804:latest
           - agoloncser/docker-ansible-ubuntu2004:latest
         include:
-          - python_version: ["3.8"]
+          - python_version: "3.8"
             molecule_image: agoloncser/docker-ansible-fedora33:latest
             experimental: true
-          - python_version: ["3.8"]
+          - python_version: "3.8"
             molecule_image: agoloncser/docker-ansible-ubuntu2010:latest
             experimental: true
 
