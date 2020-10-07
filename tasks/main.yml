@@ -14,7 +14,7 @@
 
 - name: uninstall python versions
   command: >-
-    {{ python_pyenv_dir}}/bin/pyenv uninstall -f {{ item.version }}
+    {{ python_pyenv_dir }}/bin/pyenv uninstall -f {{ item.version }}
   register: pyenv_uninstall
   failed_when:
     - pyenv_uninstall.rc != 0
