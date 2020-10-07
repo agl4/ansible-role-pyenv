@@ -1,5 +1,4 @@
 ---
-# vars file for ansible-role-python
 __python_packages:
   - build-essential
   - curl

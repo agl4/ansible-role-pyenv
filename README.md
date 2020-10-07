@@ -47,14 +47,14 @@ None.
     - hosts: all
       vars:
         python_versions:
-        - version: 3.7.7
-        - version: 2.7.8
+          - version: 3.7.7
+          - version: 2.7.8
             state: absent
-        - version: 3.8.3
+          - version: 3.8.3
             global: yes
         python_pyenv_dir: ~/.pyenv
       roles:
-        - agoloncser.ansible-role-python
+        - agoloncser.ansible-role-pyenv
 
 
 ## License
