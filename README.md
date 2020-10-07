@@ -1,38 +1,66 @@
-Role Name
-=========
+# Pyenv setup with ansible
 
-A brief description of the role goes here.
+Ansible role to set up (pyenv)[https://github.com/pyenv/pyenv] and install different Python versions.
 
-Requirements
-------------
+## Requirements
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+None.
 
-Role Variables
---------------
+## Role Variables
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+This is a sample variable structure used by this role:
 
-Dependencies
-------------
+    python_versions:
+      - version: 3.7.7
+      - version: 2.7.8
+        state: absent
+      - version: 3.8.3
+        global: yes
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+### `python_versions.item.version`
 
-Example Playbook
-----------------
+The python version to install.
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+### `python_versions.item.state`
 
-    - hosts: servers
+The state of installed Python version. Set `absent` to remove, `present` to install. Default: `present`. Optional
+
+### `python_versions.item.global`
+
+Set this python version as global. Only the last item set as `global` will be set as global Python version.
+
+### `git_repos.item.version`
+
+
+The git version of the repository to check out. Can be a branch, a tag, commit id. Default: `master`.
+
+### `python_pyenv_dir`
+
+Where to set up pyenv. Default: `~/.pyenv`
+
+## Dependencies
+
+None.
+
+## Example Playbook
+
+    - hosts: all
+      vars:
+        python_versions:
+        - version: 3.7.7
+        - version: 2.7.8
+            state: absent
+        - version: 3.8.3
+            global: yes
+        python_pyenv_dir: ~/.pyenv
       roles:
-         - { role: username.rolename, x: 42 }
+        - agoloncser.ansible-role-python
 
-License
--------
+
+## License
 
 BSD
 
-Author Information
-------------------
+## Author Information
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+https://github.com/agoloncser
