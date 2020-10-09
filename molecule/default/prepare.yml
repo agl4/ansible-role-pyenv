@@ -1,8 +1,0 @@
----
-- hosts: all
-  gather_facts: False
-  tasks:
-    - name: install python
-      raw: test -e /usr/bin/python3 || ( apt update && apt install -y python3 )
-      changed_when: false
-      failed_when: false

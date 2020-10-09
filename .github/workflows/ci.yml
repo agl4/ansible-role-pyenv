@@ -15,16 +15,20 @@ jobs:
         python_version: ["3.8"]
         experimental: [false]
         molecule_image:
-          - agoloncser/docker-ansible-fedora31:latest
-          - agoloncser/docker-ansible-fedora32:latest
-          - agoloncser/docker-ansible-ubuntu1804:latest
-          - agoloncser/docker-ansible-ubuntu2004:latest
+          - agoloncser/docker-ansible-fedora31
+          - agoloncser/docker-ansible-fedora32
+          - agoloncser/docker-ansible-ubuntu1804
+          - agoloncser/docker-ansible-ubuntu2004
+          - agoloncser/docker-ansible-centos7
+          - agoloncser/docker-ansible-centos8
+          - agoloncser/docker-ansible-debian10
+          - agoloncser/docker-ansible-debian11
         include:
           - python_version: "3.8"
-            molecule_image: agoloncser/docker-ansible-fedora33:latest
+            molecule_image: agoloncser/docker-ansible-fedora33
             experimental: true
           - python_version: "3.8"
-            molecule_image: agoloncser/docker-ansible-ubuntu2010:latest
+            molecule_image: agoloncser/docker-ansible-ubuntu2010
             experimental: true
 
     steps:
