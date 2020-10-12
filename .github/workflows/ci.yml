@@ -57,6 +57,10 @@ jobs:
         env:
           MOLECULE_IMAGE: ${{ matrix.molecule_image }}
 
+  galaxy_upload:
+    runs-on: ubuntu-latest
+    needs: molecule
+    steps:
       - name: Import to Galaxy
         uses: robertdebock/galaxy-action@1.0.3
         with:
