@@ -34,26 +34,26 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-        with:
-          path: "${{ github.repository }}"
 
-      - name: Set up Python ${{ matrix.python_version }}
+      - name: Use Python ${{ matrix.python_version }}
         uses: actions/setup-python@v1
         with:
           python-version: ${{ matrix.python_version }}
 
-      - name: Install dependencies
-        run: pip install ansible molecule yamllint docker ansible-lint
+      - name: Use pipenv
+        uses: dschep/install-pipenv-action@v1
 
       - name: Use Node.js
         uses: actions/setup-node@v1
+
+      - name: Install pip dependencies
+        run: pipenv install
 
       - name: Install Prettier.js
         run: npm install --global prettier
 
       - name: Molecule test
-        run: molecule test
-        working-directory: "${{ github.repository }}"
+        run: pipenv run molecule test
         env:
           MOLECULE_IMAGE: ${{ matrix.molecule_image }}
 
