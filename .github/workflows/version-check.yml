@@ -1,0 +1,26 @@
+---
+name: Check latest python version
+on:
+  push: {}
+  pull_request: {}
+  schedule:
+    - cron: "12 6 * * 1"
+jobs:
+  molecule:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          path: main
+
+      - name: Checkout pyenv
+        uses: actions/checkout@v2
+        with:
+          repository: pyenv/pyenv
+          path: pyenv
+
+      - name: Check version
+        run: |
+          ls -la . $GITHUB_WORKSPACE
