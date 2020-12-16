@@ -22,3 +22,23 @@
           - "'* 3.8.3' in pyenv_versions.stdout"
           - "'3.7.7' in pyenv_versions.stdout"
           - "'2.7.8' not in pyenv_versions.stdout"
+
+    - name: check installed versions
+      assert:
+        that:
+          - "'* 3.8.3' in pyenv_versions.stdout"
+          - "'3.7.7' in pyenv_versions.stdout"
+          - "'2.7.8' not in pyenv_versions.stdout"
+
+    - name: get latest versions
+      shell: >
+        pyenv install -l | sort -n | grep '^  3\.8\.' | tail -1
+      command: >-
+        {{ pyenv_dir }}/bin/pyenv install -l
+      register: pyenv_latest_python_version
+      changed_when: false
+
+    - name: latest python gets installed by default
+      assert:
+        that:
+          - "pyenv_default_version in pyenv_latest_python_version.stdout"
