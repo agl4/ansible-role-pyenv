@@ -26,5 +26,5 @@ jobs:
           repo_latest_ver=$(grep '^pyenv_default_version' $GITHUB_WORKSPACE/repo/defaults/main.yml | cut -d' ' -f2-)
           pyenv_latest_def=$(find $GITHUB_WORKSPACE/pyenv/plugins/python-build/share/python-build -type f -name "3.8.*" | sort -rn | head -1)
           pyenv_latest_ver=$(basename $pyenv_latest_def)
-          echo $pyenv_latest_ver $repo_latest_ver
+          echo Latest pyenv: $pyenv_latest_ver ... Repo version: $repo_latest_ver
           if [ "$repo_latest_ver" != "$pyenv_latest_ver" ]; then echo "ERROR code is not using the latest available Python version provided by Pyenv."; exit 1; fi
