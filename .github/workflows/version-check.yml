@@ -13,7 +13,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          path: main
+          path: repo
 
       - name: Checkout pyenv
         uses: actions/checkout@v2
@@ -24,4 +24,7 @@ jobs:
       - name: Check version
         run: |
           ls -la . $GITHUB_WORKSPACE;
-          find $GITHUB_WORKSPACE/pyenv/plugins/python-build/share/python-build -type f -name "3.8.*" | sort -rn | head -1
+          repo_latest_ver=$(grep '^pyenv_default_version' $GITHUB_WORKSPACE/repo/defaults/main.yml | cut -d' ' -f2-)
+          pyenv_latest_def=$(find $GITHUB_WORKSPACE/pyenv/plugins/python-build/share/python-build -type f -name "3.8.*" | sort -rn | head -1)
+          pyenv_latest_ver=$(basename $pyenv_latest_def)
+          echo $pyenv_latest_ver $repo_latest_ver
