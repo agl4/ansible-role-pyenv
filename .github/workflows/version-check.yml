@@ -23,4 +23,5 @@ jobs:
 
       - name: Check version
         run: |
-          ls -la . $GITHUB_WORKSPACE
+          ls -la . $GITHUB_WORKSPACE;
+          find $GITHUB_WORKSPACE/pyenv/pyenv/plugins/python-build/share/python-build -name "3.8.*"
