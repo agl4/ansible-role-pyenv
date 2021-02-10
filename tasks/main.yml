@@ -5,6 +5,7 @@
 - name: install build requisites
   package:
     name: "{{ python_packages }}"
+  become: "yes"
 
 - name: checkout pyenv
   git:
