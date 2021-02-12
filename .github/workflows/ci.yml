@@ -15,7 +15,6 @@ jobs:
         python_version: ["3.8"]
         experimental: [false]
         molecule_image:
-          # - agoloncser/docker-ansible-centos7
           # - agoloncser/docker-ansible-centos8
           # - agoloncser/docker-ansible-debian10
           # - agoloncser/docker-ansible-debian11
@@ -26,6 +25,9 @@ jobs:
           - agoloncser/docker-ansible-ubuntu2004
           - agoloncser/docker-ansible-ubuntu2010
         include:
+          # - python_version: "3.8"
+          #   molecule_image: agoloncser/docker-ansible-centos7
+          #   experimental: true
           - python_version: "3.8"
             molecule_image: agoloncser/docker-ansible-fedora34
             experimental: true
@@ -35,18 +37,29 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Use Python ${{ matrix.python_version }}
-        uses: actions/setup-python@v1
+        uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python_version }}
 
-      - name: Use pipenv
-        uses: dschep/install-pipenv-action@v1
+      - name: Install pipenv
+        run: |
+          python -m pip install --upgrade pipenv wheel
+
+      - id: cache-pipenv
+        uses: actions/cache@v1
+        with:
+          path: ~/.local/share/virtualenvs
+          key: ${{ runner.os }}-pipenv-${{ hashFiles('**/Pipfile.lock') }}
+
+      - name: Install dependencies
+        if: steps.cache-pipenv.outputs.cache-hit != 'true'
+        run: |
+          pipenv install --deploy --dev
 
       - name: Use Node.js
         uses: actions/setup-node@v1
-
-      - name: Install pip dependencies
-        run: pipenv install
+        with:
+          node-version: "14"
 
       - name: Install Prettier.js
         run: npm install --global prettier
