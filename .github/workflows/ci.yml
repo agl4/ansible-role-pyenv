@@ -15,28 +15,20 @@ jobs:
         python_version: ["3.8"]
         experimental: [false]
         molecule_image:
-          # - agoloncser/docker-ansible-centos8
-          # - agoloncser/docker-ansible-debian10
-          # - agoloncser/docker-ansible-debian11
-          # - agoloncser/docker-ansible-fedora31
           - agoloncser/docker-ansible-fedora32
           - agoloncser/docker-ansible-fedora33
-          - agoloncser/docker-ansible-ubuntu1804
           - agoloncser/docker-ansible-ubuntu2004
           - agoloncser/docker-ansible-ubuntu2010
         include:
-          # - python_version: "3.8"
-          #   molecule_image: agoloncser/docker-ansible-centos7
-          #   experimental: true
-          - python_version: "3.8"
-            molecule_image: agoloncser/docker-ansible-fedora34
-            experimental: true
+            - molecule_image: agoloncser/docker-ansible-fedora34
+              python_version: "3.8"
+              experimental: true
 
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Use Python ${{ matrix.python_version }}
+      - name: Use Python
         uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python_version }}
