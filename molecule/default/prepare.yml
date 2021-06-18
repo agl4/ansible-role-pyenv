@@ -1,9 +1,9 @@
 ---
 - name: Prepare
   hosts: all
-  gather_facts: yes
+  gather_facts: "yes"
   tasks:
     - name: update repos on debian
       apt:
-        update_cache: yes
+        update_cache: "yes"
       when: ansible_distribution == "Debian"

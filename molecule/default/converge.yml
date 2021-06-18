@@ -11,4 +11,4 @@
     pyenv_dir: ~/.pyenv
   tasks:
     - include_role:
-        name: "ansible-role-pyenv"
+        name: agoloncser.pyenv
