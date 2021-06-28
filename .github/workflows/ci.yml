@@ -10,13 +10,13 @@ jobs:
     runs-on: ubuntu-latest
     continue-on-error: ${{ matrix.experimental }}
     strategy:
-      fail-fast: false
       matrix:
         python_version: ["3.8"]
         experimental: [false]
         molecule_image:
           - agoloncser/docker-ansible-fedora32
           - agoloncser/docker-ansible-fedora33
+          - agoloncser/docker-ansible-fedora34
           - agoloncser/docker-ansible-ubuntu2004
           - agoloncser/docker-ansible-ubuntu2010
 
@@ -44,14 +44,6 @@ jobs:
         run: |
           pipenv install --deploy --dev
 
-      - name: Use Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: "14"
-
-      - name: Install Prettier.js
-        run: npm install --global prettier
-
       - name: Molecule test
         run: pipenv run molecule test
         env:
@@ -62,6 +54,6 @@ jobs:
     needs: molecule
     steps:
       - name: Import to Galaxy
-        uses: robertdebock/galaxy-action@1.0.3
+        uses: robertdebock/galaxy-action@1.1.0
         with:
           galaxy_api_key: ${{ secrets.galaxy_api_key }}

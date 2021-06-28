@@ -4,9 +4,6 @@ dependency:
 driver:
   name: docker
 lint: |
-  set -e
-  yamllint .
-  prettier .
   ansible-lint
 platforms:
   - name: instance
