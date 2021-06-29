@@ -7,7 +7,7 @@
       - version: 2.7.8
         state: absent
       - version: 3.8.3
-        global: yes
+        global: "yes"
     pyenv_dir: ~/.pyenv
   tasks:
     - name: get python versions
