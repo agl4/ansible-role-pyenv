@@ -1,8 +1,10 @@
 ---
 name: Molecule testing
 "on":
-  push: {}
-  pull_request: {}
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
   schedule:
     - cron: "12 6 * * 3"
 jobs:
@@ -55,6 +57,8 @@ jobs:
     needs: molecule
     steps:
       - name: Import to Galaxy
+        if: ${{ github.ref == 'refs/heads/master' }}
+
         uses: robertdebock/galaxy-action@1.1.0
         with:
           galaxy_api_key: ${{ secrets.galaxy_api_key }}

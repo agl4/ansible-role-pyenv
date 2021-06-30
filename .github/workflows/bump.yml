@@ -2,9 +2,7 @@
 name: Generate tag
 
 "on":
-  push:
-    branches:
-      - master
+  push: {}
 
 jobs:
   build:
