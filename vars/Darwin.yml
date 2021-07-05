@@ -1,4 +1,5 @@
 ---
+__python_install_become: no
 __python_packages:
   - autoconf
   - git
