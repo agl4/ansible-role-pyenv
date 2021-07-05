@@ -5,7 +5,7 @@
 - name: install build requisites
   package:
     name: "{{ python_packages }}"
-  become: "{{ __python_install_become | default('yes') }}"
+  become: "{{ __python_install_become | default(true) }}"
 
 - name: checkout pyenv
   git:
