@@ -20,6 +20,7 @@ jobs:
           - agoloncser/docker-ansible-ubuntu2004
           - agoloncser/docker-ansible-ubuntu2010
           - agoloncser/docker-ansible-ubuntu2104
+          - agoloncser/docker-ansible-ubuntu2110
 
     steps:
       - name: Checkout
