@@ -17,6 +17,7 @@ jobs:
           - agoloncser/docker-ansible-fedora32
           - agoloncser/docker-ansible-fedora33
           - agoloncser/docker-ansible-fedora34
+          - agoloncser/docker-ansible-fedora35
           - agoloncser/docker-ansible-ubuntu2004
           - agoloncser/docker-ansible-ubuntu2010
           - agoloncser/docker-ansible-ubuntu2104
