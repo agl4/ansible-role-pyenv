@@ -10,10 +10,10 @@ tbump = "*"
 bumpversion = "*"
 
 [packages]
-ansible = "2.10"
+ansible = "2.11"
 ansible-lint = "*"
 molecule-docker = "*"
 molecule = "*"
 yamllint = "*"
 
-python_version = "3.8"
+python_version = "3.9"
