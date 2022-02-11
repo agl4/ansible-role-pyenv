@@ -3,8 +3,6 @@ name: Molecule testing
 "on":
   push: {}
   pull_request: {}
-  schedule:
-    - cron: "12 6 * * 3"
 jobs:
   molecule:
     runs-on: ubuntu-latest
