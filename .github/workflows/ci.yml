@@ -17,13 +17,8 @@ jobs:
           - agoloncser/docker-ansible-fedora34
           - agoloncser/docker-ansible-fedora35
           - agoloncser/docker-ansible-ubuntu2004
-        include:
-          - molecule_image: agoloncser/docker-ansible-ubuntu2104
-            python_version: "3.8"
-            experimental: true
-          - molecule_image: agoloncser/docker-ansible-ubuntu2110
-            python_version: "3.8"
-            experimental: true
+          - agoloncser/docker-ansible-ubuntu2104
+          - agoloncser/docker-ansible-ubuntu2110
 
     steps:
       - name: Checkout
