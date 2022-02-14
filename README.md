@@ -1,5 +1,7 @@
 # Pyenv setup with ansible
 
+[![Molecule testing](https://github.com/agoloncser/ansible-role-pyenv/actions/workflows/ci.yml/badge.svg)](https://github.com/agoloncser/ansible-role-pyenv/actions/workflows/ci.yml)
+
 Ansible role to set up [pyenv](https://github.com/pyenv/pyenv) and
 install different Python versions. It does not set up your shell for
 using pyenv though. See pyenv documentation for this.
