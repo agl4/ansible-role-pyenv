@@ -1,6 +1,6 @@
 ---
 - name: os-specific variables
-  include_vars: "{{ item }}"
+  ansible.builtin.include_vars: "{{ item }}"
   with_first_found:
     - files:
         - >-
@@ -11,6 +11,6 @@
       skip: true
 
 - name: python_packages
-  set_fact:
+  ansible.builtin.set_fact:
     python_packages: "{{ __python_packages | list }}"
   when: python_packages is not defined

@@ -1,20 +1,20 @@
 ---
 - name: variables
-  include_tasks: variables.yml
+  ansible.builtin.include_tasks: variables.yml
 
 - name: install build requisites
-  package:
+  ansible.builtin.package:
     name: "{{ python_packages }}"
   become: "{{ __python_install_become | default(true) }}"
 
 - name: checkout pyenv
-  git:
+  ansible.builtin.git:
     repo: "{{ python_pyenv_url }}"
     dest: "{{ pyenv_dir }}"
     version: master
 
 - name: uninstall python versions
-  command: >-
+  ansible.builtin.command: >-
     {{ pyenv_dir }}/bin/pyenv uninstall -f {{ item.version }}
   register: pyenv_uninstall
   failed_when:
@@ -27,7 +27,7 @@
   with_items: "{{ pyenv_python_versions }}"
 
 - name: install python versions
-  command: >-
+  ansible.builtin.command: >-
     {{ pyenv_dir }}/bin/pyenv install {{ item.version }}
   args:
     creates: "{{ pyenv_dir }}/versions/{{ item.version }}/bin/python"
@@ -35,7 +35,7 @@
   with_items: "{{ pyenv_python_versions }}"
 
 - name: set global version
-  command: >-
+  ansible.builtin.command: >-
     {{ pyenv_dir }}/bin/pyenv global {{ item.version }}
   changed_when: false
   with_items: "{{ pyenv_python_versions |selectattr('global', 'defined')| selectattr('global') | list }}"

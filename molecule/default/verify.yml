@@ -11,7 +11,7 @@
     pyenv_dir: ~/.pyenv
   tasks:
     - name: get python versions
-      command: >-
+      ansible.builtin.command: >-
         {{ pyenv_dir }}/bin/pyenv versions
       register: pyenv_versions
       changed_when: false
