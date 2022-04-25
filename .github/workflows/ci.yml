@@ -12,8 +12,6 @@ jobs:
         python_version: ["3.8"]
         experimental: [false]
         molecule_image:
-          - agoloncser/docker-ansible-fedora32
-          - agoloncser/docker-ansible-fedora33
           - agoloncser/docker-ansible-fedora34
           - agoloncser/docker-ansible-fedora35
           - agoloncser/docker-ansible-ubuntu2004
