@@ -14,6 +14,7 @@ jobs:
         molecule_image:
           - agoloncser/docker-ansible-fedora34
           - agoloncser/docker-ansible-fedora35
+          - agoloncser/docker-ansible-fedora36
           - agoloncser/docker-ansible-ubuntu2004
           - agoloncser/docker-ansible-ubuntu2110
           - agoloncser/docker-ansible-ubuntu2204
