@@ -4,6 +4,7 @@ __python_packages:
   - findutils
   - gcc
   - git
+  - libffi-devel
   - make
   - openssl-devel
   - readline-devel

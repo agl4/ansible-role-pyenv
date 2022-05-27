@@ -3,5 +3,6 @@ __python_install_become: false
 __python_packages:
   - autoconf
   - git
+  - libffi
   - readline
   - sqlite
