@@ -1,5 +1,12 @@
 # Changelog
 
+### [2.0.1](https://github.com/agoloncser/ansible-role-pyenv/compare/v2.0.0...v2.0.1) (2022-05-27)
+
+
+### Bug Fixes
+
+* Install libffi dependency ([dc3bdb8](https://github.com/agoloncser/ansible-role-pyenv/commit/dc3bdb87a086d0d93b3178d0cc74f665bbc33048))
+
 ## [2.0.0](https://github.com/agoloncser/ansible-role-pyenv/compare/v1.0.3...v2.0.0) (2022-04-06)
 
 
