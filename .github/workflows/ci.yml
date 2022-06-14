@@ -9,7 +9,7 @@ jobs:
     continue-on-error: ${{ matrix.experimental }}
     strategy:
       matrix:
-        python_version: ["3.8"]
+        python_version: ["3.10"]
         experimental: [false]
         molecule_image:
           - agoloncser/docker-ansible-fedora34
@@ -44,7 +44,7 @@ jobs:
           pipenv install --deploy --dev
 
       - name: Molecule test
-        run: pipenv run molecule test
+        run: pipenv run molecule --debug test
         env:
           MOLECULE_IMAGE: ${{ matrix.molecule_image }}
 
