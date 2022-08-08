@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.2](https://github.com/agoloncser/ansible-role-pyenv/compare/v2.0.1...v2.0.2) (2022-08-08)
+
+
+### Bug Fixes
+
+* search vars files from roles vars folder only ([da4f62b](https://github.com/agoloncser/ansible-role-pyenv/commit/da4f62b40daca509401280e3bb8b81f6159d4861))
+
 ### [2.0.1](https://github.com/agoloncser/ansible-role-pyenv/compare/v2.0.0...v2.0.1) (2022-05-27)
 
 
