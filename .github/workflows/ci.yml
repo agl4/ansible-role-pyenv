@@ -19,10 +19,10 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Use Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python_version }}
 
@@ -31,7 +31,7 @@ jobs:
           python -m pip install --upgrade pipenv wheel
 
       - id: cache-pipenv
-        uses: actions/cache@v1
+        uses: actions/cache@v3
         with:
           path: ~/.local/share/virtualenvs
           key: ${{ runner.os }}-pipenv-${{ hashFiles('**/Pipfile.lock', '**/tasks/main.yml') }}
